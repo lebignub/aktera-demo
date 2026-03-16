@@ -167,6 +167,7 @@ body::before{
   padding:16px;
 }
 .kpi-label{font-size:10px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.6px;margin-bottom:6px}
+.kpi-label-target{font-size:9px;font-weight:600;color:#F59E0B;letter-spacing:0.5px;text-transform:uppercase;margin-bottom:2px}
 .kpi-value{font-size:28px;font-weight:800;color:var(--text-primary);line-height:1}
 .kpi-sub{font-size:11px;color:var(--text-secondary);margin-top:5px;display:flex;align-items:center;gap:4px}
 .kpi-dot{width:6px;height:6px;border-radius:50%;display:inline-block;flex-shrink:0}
@@ -572,6 +573,22 @@ body::before{
 .ph-right{margin-left:auto;text-align:right}
 .ph-pct{font-size:22px;font-weight:800;color:var(--green)}
 .ph-pct-label{font-size:10px;color:var(--text-muted)}
+/* ── Upload simulation ── */
+.upload-overlay{position:fixed;inset:0;z-index:500;background:rgba(0,0,0,0.75);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.3s}
+.upload-overlay.visible{opacity:1;pointer-events:all}
+.upload-modal{background:#161c2d;border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:28px 32px;width:360px;display:flex;flex-direction:column;gap:14px}
+.upload-modal-file{font-size:13px;font-weight:600;color:#fff;display:flex;align-items:center;gap:10px}
+.upload-modal-bar-wrap{height:3px;background:rgba(255,255,255,0.08);border-radius:2px;overflow:hidden}
+.upload-modal-bar{height:100%;width:0%;background:#4F8EFF;border-radius:2px;transition:width 0.6s ease}
+.upload-modal-step{display:flex;align-items:center;gap:12px;font-size:13px;color:rgba(255,255,255,0.35);transition:color 0.4s}
+.upload-modal-step.active{color:#fff}
+.upload-modal-step.done{color:#34D399}
+.upload-modal-step-dot{width:18px;height:18px;border-radius:50%;border:2px solid currentColor;display:flex;align-items:center;justify-content:center;font-size:10px;flex-shrink:0;transition:all 0.3s}
+.upload-modal-step.active .upload-modal-step-dot{border-color:#4F8EFF;background:rgba(79,142,255,0.15);animation:pulseDot 1s infinite}
+.upload-modal-step.done .upload-modal-step-dot{border-color:#34D399;background:rgba(52,211,153,0.15)}
+.upload-modal-result{font-size:12px;color:#34D399;font-weight:600;text-align:center;opacity:0;transition:opacity 0.4s;padding-top:4px}
+.upload-modal-result.visible{opacity:1}
+@keyframes pulseDot{0%,100%{transform:scale(1)}50%{transform:scale(1.2)}}
 </style>
 </head>
 <body>
@@ -646,14 +663,16 @@ body::before{
         <div class="kpi-sub"><span class="kpi-dot" style="background:var(--green)"></span>Alle documenten OK</div>
       </div>
       <div class="kpi-card">
-        <div class="kpi-label">Tijd Bespaard</div>
+        <div class="kpi-label-target">● Doelstelling</div>
+        <div class="kpi-label">Tijdsbesparing</div>
         <div class="kpi-value" style="color:#4F8EFF">~2u</div>
-        <div class="kpi-sub"><span class="kpi-dot" style="background:#4F8EFF"></span>Per dossier</div>
+        <div class="kpi-sub"><span class="kpi-dot" style="background:#4F8EFF"></span>Doel · per dossier</div>
       </div>
       <div class="kpi-card">
-        <div class="kpi-label">Gem. Doorlooptijd</div>
+        <div class="kpi-label-target">● Doelstelling</div>
+        <div class="kpi-label">Doorlooptijd</div>
         <div class="kpi-value">14d</div>
-        <div class="kpi-sub"><span class="kpi-dot" style="background:var(--green)"></span>Dossier → Compromis</div>
+        <div class="kpi-sub"><span class="kpi-dot" style="background:var(--green)"></span>Doel · Dossier → Compromis</div>
       </div>
     </div>
 
@@ -900,7 +919,7 @@ body::before{
       </div>
     </div>
 
-    <div class="upload-strip" onclick="showToast('Documentupload geopend...')">
+    <div class="upload-strip" onclick="simulateUpload()">
       <div class="upload-strip-icon">☁️</div>
       <div class="upload-strip-title">Documenten uploaden</div>
       <div class="upload-strip-sub">Sleep hier of klik — PDF, JPG, PNG · max. 20 MB</div>
@@ -1813,6 +1832,51 @@ document.querySelectorAll('.nav-tab').forEach(tab => {
   const svg = tab.querySelector('svg');
   if (svg && tab.classList.contains('active')) svg.style.color = '#4F8EFF';
 });
+function simulateUpload(){
+  const ov=document.getElementById('uploadOverlay');
+  const bar=document.getElementById('uploadBar');
+  const result=document.getElementById('uploadResult');
+  const steps=['ustep1','ustep2','ustep3'].map(id=>document.getElementById(id));
+  const dots=['udot1','udot2','udot3'].map(id=>document.getElementById(id));
+  // reset
+  steps.forEach(s=>{s.classList.remove('active','done')});
+  dots.forEach(d=>{d.textContent=''});
+  bar.style.width='0%';bar.style.background='#4F8EFF';
+  result.classList.remove('visible');
+  ov.classList.add('visible');
+  // step 1
+  setTimeout(()=>{steps[0].classList.add('active');bar.style.width='25%'},200);
+  setTimeout(()=>{steps[0].classList.remove('active');steps[0].classList.add('done');dots[0].textContent='✓';steps[1].classList.add('active');bar.style.width='55%'},1400);
+  // step 2
+  setTimeout(()=>{steps[1].classList.remove('active');steps[1].classList.add('done');dots[1].textContent='✓';steps[2].classList.add('active');bar.style.width='80%'},3200);
+  // step 3
+  setTimeout(()=>{steps[2].classList.remove('active');steps[2].classList.add('done');dots[2].textContent='✓';bar.style.width='100%';bar.style.background='#34D399';result.classList.add('visible')},4800);
+  // close + toast
+  setTimeout(()=>{ov.classList.remove('visible');showToast('✓ EPC geëxtraheerd — 8 velden gevonden, zekerheid 94%')},6200);
+}
 </script>
+<!-- Upload simulation overlay -->
+<div class="upload-overlay" id="uploadOverlay" onclick="this.classList.remove('visible')">
+  <div class="upload-modal" onclick="event.stopPropagation()">
+    <div class="upload-modal-file">
+      <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="#4F8EFF" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+      EPC_Dorpsstraat45.pdf
+    </div>
+    <div class="upload-modal-bar-wrap"><div class="upload-modal-bar" id="uploadBar"></div></div>
+    <div class="upload-modal-step" id="ustep1">
+      <div class="upload-modal-step-dot" id="udot1"></div>
+      <span>Document uploaden</span>
+    </div>
+    <div class="upload-modal-step" id="ustep2">
+      <div class="upload-modal-step-dot" id="udot2"></div>
+      <span>Claude leest document…</span>
+    </div>
+    <div class="upload-modal-step" id="ustep3">
+      <div class="upload-modal-step-dot" id="udot3"></div>
+      <span>Velden extraheren &amp; valideren</span>
+    </div>
+    <div class="upload-modal-result" id="uploadResult">✓ &nbsp;8 velden geëxtraheerd &nbsp;·&nbsp; zekerheid 94%</div>
+  </div>
+</div>
 </body>
 </html>
