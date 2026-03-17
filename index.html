@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AKTERA — AI Dossierbeheer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -28,7 +28,7 @@
   --card-border:rgba(255,255,255,0.09);
   --card-hover:rgba(255,255,255,0.08);
   --divider:rgba(255,255,255,0.08);
-  --font:'DM Sans',-apple-system,sans-serif;
+  --font:'Plus Jakarta Sans',-apple-system,sans-serif;
   --r:12px;
   --r-sm:10px;
   --r-xs:8px;
@@ -44,6 +44,16 @@ body{
   overflow-x:hidden;
 }
 
+
+
+/* ── Skeleton / shimmer loading ── */
+@keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+.skeleton{
+  background:linear-gradient(90deg,rgba(255,255,255,0.04) 25%,rgba(255,255,255,0.08) 50%,rgba(255,255,255,0.04) 75%);
+  background-size:200% 100%;
+  animation:shimmer 1.6s ease-in-out infinite;
+  border-radius:var(--r-xs);
+}
 
 /* ── Grain overlay (fixed, GPU-safe) ── */
 body::after{
@@ -165,7 +175,7 @@ body::after{
 .section-action{font-size:12px;font-weight:600;color:#4F8EFF;cursor:pointer}
 
 /* ── Dossier list cards ── */
-.dossiers-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:16px}
+.dossiers-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:14px;margin-bottom:16px}
 .dossier-card{
   background:var(--card-bg);
   border:1px solid var(--card-border);
@@ -176,7 +186,7 @@ body::after{
   box-shadow:inset 0 1px 0 rgba(255,255,255,0.07);
 }
 .dossier-card:hover{border-color:rgba(255,255,255,0.14);background:rgba(255,255,255,0.07);transform:translateY(-2px);box-shadow:inset 0 1px 0 rgba(255,255,255,0.1),0 6px 24px rgba(0,0,0,0.25)}
-.dossier-card:active{transform:translateY(0)}
+.dossier-card:active{transform:translateY(0) scale(0.985)}
 .dc-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:10px}
 .dc-address{font-size:14px;font-weight:700;color:var(--text-primary)}
 .dc-city{font-size:12px;color:var(--text-secondary);margin-top:1px}
@@ -253,6 +263,7 @@ body::after{
   box-shadow:inset 0 1px 0 rgba(255,255,255,0.07);
 }
 .doc-card:hover{border-color:rgba(255,255,255,0.14);background:var(--card-hover);box-shadow:inset 0 1px 0 rgba(255,255,255,0.1),0 3px 12px rgba(0,0,0,0.2)}
+.doc-card:active{transform:scale(0.99);transition:transform 0.1s}
 .doc-card.active{border-color:rgba(79,142,255,0.35);background:rgba(79,142,255,0.08)}
 .doc-icon{
   width:36px;height:36px;border-radius:10px;
@@ -287,7 +298,7 @@ body::after{
   transition:var(--tr);z-index:50;white-space:nowrap;
 }
 .float-btn:hover{background:#3d7fff;box-shadow:0 6px 20px rgba(79,142,255,0.35);transform:translateX(-50%) translateY(-2px)}
-.float-btn:active{transform:translateX(-50%) translateY(0)}
+.float-btn:active{transform:translateX(-50%) translateY(0) scale(0.96)}
 .float-btn.hidden{display:none}
 
 /* ── Document fields ── */
@@ -476,6 +487,7 @@ body::after{
 }
 .btn-primary{background:#4F8EFF;color:#fff;box-shadow:0 4px 16px rgba(79,142,255,0.3)}
 .btn-primary:hover{background:#3d7fff;box-shadow:0 6px 20px rgba(79,142,255,0.4)}
+.btn-primary:active{transform:translateY(1px) scale(0.98);box-shadow:0 2px 8px rgba(79,142,255,0.25)}
 .btn-success{background:rgba(52,211,153,0.15);color:var(--green);border:1px solid var(--green-border)}
 .btn-success:hover{background:rgba(52,211,153,0.25)}
 .btn-ghost{background:rgba(255,255,255,0.06);color:var(--text-secondary);border:1px solid rgba(255,255,255,0.1)}
