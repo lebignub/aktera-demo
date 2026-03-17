@@ -108,10 +108,10 @@ body::before{
   border-radius:24px;padding:9px 18px;
   font-size:12px;font-weight:700;color:#0a2d6b;
   box-shadow:0 4px 20px rgba(79,142,255,0.45);
-  transform:translateY(-10px);
+  transform:translateY(-6px);
   transition:var(--tr);
 }
-.nav-center-pill:hover{background:#3d7fff;transform:translateY(-12px);box-shadow:0 6px 24px rgba(79,142,255,0.55)}
+.nav-center-pill:hover{background:#3d7fff;transform:translateY(-8px);box-shadow:0 4px 16px rgba(79,142,255,0.3)}
 .nav-center-pill:active{transform:translateY(-8px)}
 
 /* ── Main content ── */
@@ -296,11 +296,11 @@ body::before{
   border:none;border-radius:24px;
   padding:13px 28px;font-size:14px;font-weight:700;
   font-family:var(--font);cursor:pointer;
-  box-shadow:0 6px 24px rgba(79,142,255,0.5);
+  box-shadow:0 4px 16px rgba(79,142,255,0.25);
   display:flex;align-items:center;gap:8px;
   transition:var(--tr);z-index:50;white-space:nowrap;
 }
-.float-btn:hover{background:#3d7fff;box-shadow:0 8px 28px rgba(79,142,255,0.6);transform:translateX(-50%) translateY(-2px)}
+.float-btn:hover{background:#3d7fff;box-shadow:0 6px 20px rgba(79,142,255,0.35);transform:translateX(-50%) translateY(-2px)}
 .float-btn:active{transform:translateX(-50%) translateY(0)}
 .float-btn.hidden{display:none}
 
@@ -693,13 +693,13 @@ body::before{
         <div class="kpi-sub"><span class="kpi-dot" style="background:var(--green)"></span>Alle documenten OK</div>
       </div>
       <div class="kpi-card">
-        <div class="kpi-label-target">● Doelstelling</div>
+        <div class="kpi-label-target">Doelstelling</div>
         <div class="kpi-label">Tijdsbesparing</div>
         <div class="kpi-value" style="color:#4F8EFF">~2u</div>
         <div class="kpi-sub"><span class="kpi-dot" style="background:#4F8EFF"></span>Doel · per dossier</div>
       </div>
       <div class="kpi-card">
-        <div class="kpi-label-target">● Doelstelling</div>
+        <div class="kpi-label-target">Doelstelling</div>
         <div class="kpi-label">Doorlooptijd</div>
         <div class="kpi-value">14d</div>
         <div class="kpi-sub"><span class="kpi-dot" style="background:var(--green)"></span>Doel · Dossier → Compromis</div>
@@ -814,7 +814,7 @@ body::before{
 
     <div class="prop-header">
       <div class="ph-top">
-        <div class="ph-icon">🏠</div>
+        
         <div style="flex:1">
           <div class="ph-address">Dorpsstraat 45</div>
           <div class="ph-ref">9000 Gent · Ref. DOS-2026-047 · Verkoop appartement</div>
@@ -847,7 +847,7 @@ body::before{
 
     <!-- Document cards -->
     <div class="doc-card" onclick="openDocSheet('bod')">
-      <div class="doc-icon doc-icon-green">✅</div>
+      <div class="doc-icon doc-icon-green"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" fill="rgba(52,211,153,0.15)" stroke="#34D399" stroke-width="1.5"/><polyline points="4,7 6,9 10,5" stroke="#34D399" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       <div style="flex:1">
         <div class="doc-name">Bod / Aankoopvoorstel</div>
         <div class="doc-sub" style="color:var(--green)">Geaccepteerd · Brondata</div>
@@ -855,7 +855,7 @@ body::before{
       <div class="doc-chevron">›</div>
     </div>
     <div class="doc-card" onclick="openDocSheet('samenwerking')">
-      <div class="doc-icon doc-icon-green">✅</div>
+      <div class="doc-icon doc-icon-green"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" fill="rgba(52,211,153,0.15)" stroke="#34D399" stroke-width="1.5"/><polyline points="4,7 6,9 10,5" stroke="#34D399" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       <div style="flex:1">
         <div class="doc-name">Samenwerkingsovereenkomst</div>
         <div class="doc-sub" style="color:var(--green)">Ondertekend · 6 velden auto-ingevuld</div>
@@ -863,7 +863,7 @@ body::before{
       <div class="doc-chevron">›</div>
     </div>
     <div class="doc-card" onclick="openDocSheet('compromis')">
-      <div class="doc-icon doc-icon-blue">📝</div>
+      <div class="doc-icon doc-icon-blue"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4F8EFF" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
       <div style="flex:1">
         <div class="doc-name">Compromis</div>
         <div class="doc-sub" style="color:#4F8EFF">Klaar om te genereren</div>
@@ -934,7 +934,7 @@ body::before{
 
     <div class="prop-header">
       <div class="ph-top">
-        <div class="ph-icon">🏠</div>
+        
         <div style="flex:1">
           <div class="ph-address">Kerkplein 12</div>
           <div class="ph-ref">8000 Brugge · Ref. DOS-2026-031 · Verkoop appartement</div>
@@ -967,7 +967,7 @@ body::before{
 
     <!-- Document cards -->
     <div class="doc-card" onclick="showToast('Bod geaccepteerd · Gegevens beschikbaar als brondata')">
-      <div class="doc-icon doc-icon-green">✅</div>
+      <div class="doc-icon doc-icon-green"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" fill="rgba(52,211,153,0.15)" stroke="#34D399" stroke-width="1.5"/><polyline points="4,7 6,9 10,5" stroke="#34D399" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       <div style="flex:1">
         <div class="doc-name">Bod / Aankoopvoorstel</div>
         <div class="doc-sub" style="color:var(--green)">Geaccepteerd · Brondata</div>
@@ -976,7 +976,7 @@ body::before{
     </div>
 
     <div class="doc-card" style="border-color:rgba(245,158,11,0.3);background:rgba(245,158,11,0.04)">
-      <div class="doc-icon" style="background:rgba(245,158,11,0.15);font-size:16px">⏳</div>
+      <div class="doc-icon" style="background:rgba(245,158,11,0.1)"><svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="#F59E0B" opacity="0.8"/></svg></div>
       <div style="flex:1">
         <div class="doc-name">Samenwerkingsovereenkomst</div>
         <div class="doc-sub" style="color:var(--amber)">Wacht op ondertekening</div>
@@ -997,13 +997,13 @@ body::before{
 
     <!-- Upload zone -->
     <div class="upload-strip" onclick="simulateUpload()" style="margin-bottom:10px">
-      <div class="upload-strip-icon">☁️</div>
+      <div class="upload-strip-icon"><svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="opacity:0.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg></div>
       <div class="upload-strip-title">Documenten uploaden</div>
       <div class="upload-strip-sub">Sleep hier of klik — PDF, JPG, PNG · max. 20 MB</div>
     </div>
 
     <div class="doc-card" onclick="simulateUpload()" style="border-color:rgba(255,255,255,0.06);cursor:pointer">
-      <div class="doc-icon" style="background:rgba(255,255,255,0.05);font-size:16px">➕</div>
+      <div class="doc-icon" style="background:rgba(255,255,255,0.04)"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="1.5" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></div>
       <div style="flex:1">
         <div class="doc-name" style="color:rgba(255,255,255,0.5)">Elektrische keuring</div>
         <div class="doc-sub">Ontbrekend · Klik om te uploaden</div>
@@ -1012,7 +1012,7 @@ body::before{
     </div>
 
     <div class="doc-card" onclick="simulateUpload()" style="border-color:rgba(255,255,255,0.06);cursor:pointer">
-      <div class="doc-icon" style="background:rgba(255,255,255,0.05);font-size:16px">➕</div>
+      <div class="doc-icon" style="background:rgba(255,255,255,0.04)"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="1.5" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></div>
       <div style="flex:1">
         <div class="doc-name" style="color:rgba(255,255,255,0.5)">Bodemattest</div>
         <div class="doc-sub">Ontbrekend · Klik om te uploaden</div>
@@ -1021,7 +1021,7 @@ body::before{
     </div>
 
     <div class="doc-card" onclick="simulateUpload()" style="border-color:rgba(255,255,255,0.06);cursor:pointer">
-      <div class="doc-icon" style="background:rgba(255,255,255,0.05);font-size:16px">➕</div>
+      <div class="doc-icon" style="background:rgba(255,255,255,0.04)"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="1.5" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></div>
       <div style="flex:1">
         <div class="doc-name" style="color:rgba(255,255,255,0.5)">Eigendomsakte</div>
         <div class="doc-sub">Ontbrekend · Klik om te uploaden</div>
@@ -1058,7 +1058,7 @@ body::before{
     </div>
 
     <div class="upload-strip" onclick="simulateUpload()">
-      <div class="upload-strip-icon">☁️</div>
+      <div class="upload-strip-icon"><svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="opacity:0.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg></div>
       <div class="upload-strip-title">Documenten uploaden</div>
       <div class="upload-strip-sub">Sleep hier of klik — PDF, JPG, PNG · max. 20 MB</div>
     </div>
@@ -1929,7 +1929,7 @@ function closeNieuwSheet() {
 }
 function createDossier() {
   closeNieuwSheet();
-  showToast('✅ Nieuw dossier aangemaakt', '📁');
+  showToast('Nieuw dossier aangemaakt');
 }
 
 // ── Compromis modal ──
@@ -1957,7 +1957,7 @@ function generateCompromis() {
   setTimeout(()=>{steps[0].classList.remove('active');steps[0].classList.add('done');dots[0].textContent='✓';steps[1].classList.add('active');bar.style.width='58%'},1200);
   setTimeout(()=>{steps[1].classList.remove('active');steps[1].classList.add('done');dots[1].textContent='✓';steps[2].classList.add('active');bar.style.width='82%'},2400);
   setTimeout(()=>{steps[2].classList.remove('active');steps[2].classList.add('done');dots[2].textContent='✓';bar.style.width='100%';bar.style.background='#34D399';result.classList.add('visible')},3400);
-  setTimeout(()=>{ov.classList.remove('visible');showToast('📄 Compromis klaar — Dorpsstraat_45_Gent_compromis_v1.docx')},4800);
+  setTimeout(()=>{ov.classList.remove('visible');showToast('Compromis klaar — Dorpsstraat_45_Gent_compromis_v1.docx')},4800);
 }
 
 // ── Verify check toggle ──
@@ -2080,7 +2080,7 @@ function closeProfileSheet(){
         Instellingen
       </div>
     </div>
-    <button class="profile-logout" onclick="closeProfileSheet();showToast('Tot later, Olivier 👋')">Uitloggen</button>
+    <button class="profile-logout" onclick="closeProfileSheet();showToast('Tot later, Olivier')">Uitloggen</button>
   </div>
 </div>
 
