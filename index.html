@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AKTERA — AI Dossierbeheer</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23080C18'/%3E%3Crect x='6' y='7' width='20' height='5' rx='2.5' fill='%234F8EFF'/%3E%3Crect x='6' y='14' width='20' height='5' rx='2.5' fill='white'/%3E%3Crect x='6' y='21' width='20' height='5' rx='2.5' fill='white' opacity='0.4'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -103,7 +104,7 @@ body::after{
   background:#4F8EFF;
   border-radius:24px;padding:9px 18px;
   font-size:12px;font-weight:700;color:#fff;
-  box-shadow:0 4px 20px rgba(79,142,255,0.45);
+  box-shadow:0 8px 32px rgba(79,142,255,0.25);
   transform:translateY(-6px);
   transition:var(--tr);
 }
@@ -128,7 +129,7 @@ body::after{
 .wordmark-sub{font-size:11px;color:var(--text-muted);margin-top:1px}
 .header-avatar{
   width:44px;height:44px;border-radius:50%;
-  background:linear-gradient(135deg,#4F8EFF,#8B5CF6);
+  background:#1a3060;border:1px solid rgba(79,142,255,0.25);
   display:flex;align-items:center;justify-content:center;
   font-size:12px;font-weight:700;color:#fff;
   position:relative;cursor:pointer;
@@ -215,7 +216,7 @@ body::after{
 /* Progress bar */
 .progress-wrap{margin-bottom:8px}
 .progress-track{height:4px;background:rgba(255,255,255,0.1);border-radius:2px;overflow:hidden;margin-bottom:3px}
-.progress-fill{height:100%;border-radius:2px;transition:width 0.5s ease}
+.progress-fill{height:100%;border-radius:2px;transition:width 0.5s cubic-bezier(0.32,0.72,0,1)}
 .progress-pct{font-size:10px;color:var(--text-muted);font-weight:600}
 
 /* ── Badge ── */
@@ -255,7 +256,7 @@ body::after{
 .pipe-icon.done-c{color:var(--green)}
 .pipe-icon.current-c{color:#4F8EFF}
 .pipe-icon.pending-c{color:var(--text-muted)}
-.pipe-label{font-size:8.5px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px}
+.pipe-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px}
 .pipe-label.done-c{color:var(--green)}
 .pipe-label.current-c{color:#4F8EFF}
 .pipe-label.pending-c{color:var(--text-muted)}
@@ -569,7 +570,7 @@ body::after{
   display:flex;flex-direction:column;align-items:center;justify-content:center;
   padding:80px 20px;text-align:center;
 }
-.stub-icon{font-size:48px;margin-bottom:16px;opacity:0.5}
+.stub-icon{margin-bottom:16px;display:flex;align-items:center;justify-content:center}
 .stub-title{font-size:18px;font-weight:700;color:var(--text-secondary);margin-bottom:6px}
 .stub-sub{font-size:13px;color:var(--text-muted)}
 
@@ -628,7 +629,7 @@ body::after{
 @keyframes pulseDot{0%,100%{transform:scale(1)}50%{transform:scale(1.2)}}
 
 /* ── Profile sheet ── */
-.profile-avatar-lg{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#4F8EFF,#8B5CF6);display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;color:#fff;margin:0 auto 12px;position:relative}
+.profile-avatar-lg{width:56px;height:56px;border-radius:50%;background:#1a3060;border:1px solid rgba(79,142,255,0.25);display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;color:#fff;margin:0 auto 12px;position:relative}
 .profile-avatar-dot{width:12px;height:12px;border-radius:50%;background:#34D399;position:absolute;bottom:2px;right:2px;border:2px solid #0D1540}
 .profile-name{font-size:17px;font-weight:700;color:#fff;text-align:center}
 .profile-agency{font-size:12px;color:var(--text-muted);text-align:center;margin-top:3px}
@@ -732,17 +733,17 @@ body::after{
         </div>
         <div class="kpi-value" style="color:var(--green)">3</div>
       </div>
-      <div class="kpi-card kpi-card-amber">
+      <div class="kpi-card kpi-card-blue">
         <div class="kpi-left">
-          <div class="kpi-label-target">Doelstelling</div>
+          <div class="kpi-label-target" style="color:#4F8EFF">Doelstelling</div>
           <div class="kpi-label">Tijdsbesparing</div>
           <div class="kpi-sub"><span class="kpi-dot" style="background:#4F8EFF"></span>per dossier</div>
         </div>
         <div class="kpi-value" style="color:#4F8EFF">~2u</div>
       </div>
-      <div class="kpi-card kpi-card-amber">
+      <div class="kpi-card kpi-card-green">
         <div class="kpi-left">
-          <div class="kpi-label-target">Doelstelling</div>
+          <div class="kpi-label-target" style="color:var(--green)">Doelstelling</div>
           <div class="kpi-label">Doorlooptijd</div>
           <div class="kpi-sub"><span class="kpi-dot" style="background:var(--green)"></span>Dossier → Compromis</div>
         </div>
@@ -1272,7 +1273,9 @@ body::after{
   <!-- ══ PANDEN PAGE ══ -->
   <div id="page-panden" class="page">
     <div class="stub-page">
-      <div class="stub-icon">🏠</div>
+      <div class="stub-icon">
+        <svg width="48" height="48" fill="none" viewBox="0 0 24 24" stroke="rgba(255,255,255,0.25)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      </div>
       <div class="stub-title">Panden</div>
       <div class="stub-sub">Pandenbeheer — binnenkort beschikbaar</div>
     </div>
@@ -1281,7 +1284,9 @@ body::after{
   <!-- ══ KANTOOR PAGE ══ -->
   <div id="page-kantoor" class="page">
     <div class="stub-page">
-      <div class="stub-icon">👤</div>
+      <div class="stub-icon">
+        <svg width="48" height="48" fill="none" viewBox="0 0 24 24" stroke="rgba(255,255,255,0.25)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+      </div>
       <div class="stub-title">Kantoor</div>
       <div class="stub-sub">Team &amp; instellingen — binnenkort beschikbaar</div>
     </div>
