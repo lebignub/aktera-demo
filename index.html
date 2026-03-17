@@ -127,7 +127,7 @@ body::before{
 }
 .wordmark{display:flex;align-items:center;gap:0}
 .wordmark-name{font-size:20px;font-weight:800;color:#fff;letter-spacing:-0.5px}
-.wordmark-ai{font-size:10px;font-weight:700;color:#4F8EFF;vertical-align:middle;line-height:1}
+.wordmark-ai{font-size:11px;font-weight:700;color:#4F8EFF;vertical-align:baseline;margin-left:4px;line-height:1}
 .wordmark-sub{font-size:11px;color:var(--text-muted);margin-top:1px}
 .header-avatar{
   width:44px;height:44px;border-radius:50%;
@@ -589,6 +589,19 @@ body::before{
 .upload-modal-result{font-size:12px;color:#34D399;font-weight:600;text-align:center;opacity:0;transition:opacity 0.4s;padding-top:4px}
 .upload-modal-result.visible{opacity:1}
 @keyframes pulseDot{0%,100%{transform:scale(1)}50%{transform:scale(1.2)}}
+
+/* ── Profile sheet ── */
+.profile-avatar-lg{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#4F8EFF,#8B5CF6);display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;color:#fff;margin:0 auto 12px;position:relative}
+.profile-avatar-dot{width:12px;height:12px;border-radius:50%;background:#34D399;position:absolute;bottom:2px;right:2px;border:2px solid #0D1540}
+.profile-name{font-size:17px;font-weight:700;color:#fff;text-align:center}
+.profile-agency{font-size:12px;color:var(--text-muted);text-align:center;margin-top:3px}
+.profile-badge{display:inline-block;background:rgba(79,142,255,0.15);color:#4F8EFF;font-size:10px;font-weight:600;padding:3px 10px;border-radius:20px;margin:8px auto 0;text-align:center}
+.profile-divider{height:1px;background:rgba(255,255,255,0.07);margin:16px 0}
+.profile-row{display:flex;align-items:center;gap:12px;padding:10px 0;font-size:13px;color:var(--text-secondary);cursor:pointer}
+.profile-row:hover{color:#fff}
+.profile-row svg{flex-shrink:0;opacity:0.5}
+.profile-logout{width:100%;margin-top:8px;padding:12px;border-radius:10px;border:1px solid rgba(255,80,80,0.3);background:rgba(255,80,80,0.07);color:#ff6b6b;font-size:13px;font-weight:600;cursor:pointer;transition:var(--tr)}
+.profile-logout:hover{background:rgba(255,80,80,0.15)}
 </style>
 </head>
 <body>
@@ -643,7 +656,7 @@ body::before{
         <div class="wordmark-sub">Meer tijd voor verkoop</div>
       </div>
     </div>
-    <div class="header-avatar" onclick="showToast('Profiel — Olivier Vandenberghe · Brown Vastgoed')">
+    <div class="header-avatar" onclick="openProfileSheet()">
       OV
       <div class="avatar-dot"></div>
     </div>
@@ -1854,6 +1867,15 @@ function simulateUpload(){
   // close + toast
   setTimeout(()=>{ov.classList.remove('visible');showToast('✓ EPC geëxtraheerd — 8 velden gevonden, zekerheid 94%')},6200);
 }
+
+function openProfileSheet(){
+  document.getElementById('profileOverlay').classList.add('open');
+  document.getElementById('profileSheet').classList.add('open');
+}
+function closeProfileSheet(){
+  document.getElementById('profileOverlay').classList.remove('open');
+  document.getElementById('profileSheet').classList.remove('open');
+}
 </script>
 <!-- Upload simulation overlay -->
 <div class="upload-overlay" id="uploadOverlay" onclick="this.classList.remove('visible')">
@@ -1876,6 +1898,38 @@ function simulateUpload(){
       <span>Velden extraheren &amp; valideren</span>
     </div>
     <div class="upload-modal-result" id="uploadResult">✓ &nbsp;8 velden geëxtraheerd &nbsp;·&nbsp; zekerheid 94%</div>
+  </div>
+</div>
+
+<!-- Profile sheet -->
+<div class="overlay" id="profileOverlay" onclick="closeProfileSheet()"></div>
+<div class="bottom-sheet" id="profileSheet">
+  <div class="bs-handle"></div>
+  <div class="bs-header">
+    <div class="bs-title">Profiel</div>
+    <button class="bs-close" onclick="closeProfileSheet()">✕</button>
+  </div>
+  <div class="bs-body" style="text-align:center">
+    <div class="profile-avatar-lg">OV<div class="profile-avatar-dot"></div></div>
+    <div class="profile-name">Olivier Vandenberghe</div>
+    <div class="profile-agency">Brown Vastgoed</div>
+    <div style="display:flex;justify-content:center"><div class="profile-badge">Makelaar</div></div>
+    <div class="profile-divider"></div>
+    <div style="text-align:left">
+      <div class="profile-row">
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        Account instellingen
+      </div>
+      <div class="profile-row">
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
+        Mijn statistieken
+      </div>
+      <div class="profile-row">
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        Instellingen
+      </div>
+    </div>
+    <button class="profile-logout" onclick="closeProfileSheet();showToast('Tot later, Olivier 👋')">Uitloggen</button>
   </div>
 </div>
 </body>
