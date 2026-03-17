@@ -366,6 +366,11 @@ body::after{
 
 /* ── Document page ── */
 
+
+/* ── Dossier header row (prop-header + sidebar side by side) ── */
+.dossier-header-row{display:grid;grid-template-columns:1fr 280px;gap:14px;align-items:stretch;margin-bottom:14px}
+.prop-header{margin-bottom:0}
+
 /* ── Dossier 2-col detail layout ── */
 .dossier-detail-layout{display:grid;grid-template-columns:1fr 280px;gap:14px;align-items:start}
 .dossier-sidebar{display:flex;flex-direction:column;gap:10px}
@@ -851,76 +856,22 @@ body::after{
       Dossiers
     </div>
 
-    <div class="prop-header">
-      <div class="ph-top">
-        
-        <div style="flex:1">
-          <div class="ph-address">Dorpsstraat 45</div>
-          <div class="ph-ref">9000 Gent · Ref. DOS-2026-047 · Verkoop appartement</div>
-        </div>
-        <div class="ph-right">
-          <div class="ph-pct">92%</div>
-          <div class="ph-pct-label">Volledigheid</div>
-        </div>
-      </div>
-      <span class="badge badge-green" style="font-size:11px;padding:4px 12px">✓ Klaar voor Compromis</span>
-    </div>
-
-    <div class="dossier-detail-layout">
-      <div class="dossier-main">
-        <div class="pipeline">
-          <div class="pipe-step done" onclick="openDocSheet('bod')"><div class="pipe-icon done-c">✓</div><div class="pipe-label done-c">Bod</div></div>
-          <span class="pipe-arrow">→</span>
-          <div class="pipe-step done" onclick="openDocSheet('samenwerking')"><div class="pipe-icon done-c">✓</div><div class="pipe-label done-c">Samenwerking</div></div>
-          <span class="pipe-arrow">→</span>
-          <div class="pipe-step current" onclick="openDocSheet('compromis')"><div class="pipe-icon current-c">→</div><div class="pipe-label current-c">Compromis</div></div>
-        </div>
-        <div class="doc-card" onclick="openDocSheet('bod')">
-          <div class="doc-icon doc-icon-green"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" fill="rgba(52,211,153,0.15)" stroke="#34D399" stroke-width="1.5"/><polyline points="4,7 6,9 10,5" stroke="#34D399" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-          <div style="flex:1"><div class="doc-name">Bod / Aankoopvoorstel</div><div class="doc-sub" style="color:var(--green)">Geaccepteerd · Brondata</div></div>
-          <div class="doc-chevron">›</div>
-        </div>
-        <div class="doc-card" onclick="openDocSheet('samenwerking')">
-          <div class="doc-icon doc-icon-green"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" fill="rgba(52,211,153,0.15)" stroke="#34D399" stroke-width="1.5"/><polyline points="4,7 6,9 10,5" stroke="#34D399" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-          <div style="flex:1"><div class="doc-name">Samenwerkingsovereenkomst</div><div class="doc-sub" style="color:var(--green)">Ondertekend · 6 velden overgenomen uit dossier</div></div>
-          <div class="doc-chevron">›</div>
-        </div>
-        <div class="doc-card" onclick="openDocSheet('compromis')">
-          <div class="doc-icon doc-icon-blue"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4F8EFF" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
-          <div style="flex:1"><div class="doc-name">Compromis</div><div class="doc-sub" style="color:#4F8EFF">Klaar om te genereren</div></div>
-          <div class="doc-chevron">›</div>
-        </div>
-        <div class="divider-label">Attesten &amp; Documenten</div>
-        <div class="attesten-grid">
-          <div class="doc-card" onclick="openDocSheet('epc')">
-            <div class="doc-icon doc-icon-green"><svg width="11" height="11" viewBox="0 0 11 11"><circle cx="5.5" cy="5.5" r="4.5" fill="rgba(52,211,153,0.2)" stroke="#34D399" stroke-width="1.5"/></svg></div>
-            <div style="flex:1"><div class="doc-name">EPC Certificaat</div><div class="doc-sub" style="color:var(--green)">Hoge zekerheid</div></div>
-            <div class="doc-chevron">›</div>
+    <div class="dossier-header-row">
+      <div class="prop-header">
+        <div class="ph-top">
+          <div style="flex:1">
+            <div class="ph-address">Dorpsstraat 45</div>
+            <div class="ph-ref">9000 Gent · Ref. DOS-2026-047 · Verkoop appartement</div>
           </div>
-          <div class="doc-card" onclick="openDocSheet('elek')">
-            <div class="doc-icon doc-icon-amber"><svg width="11" height="13" viewBox="0 0 11 13" fill="none"><polyline points="7,1 2,7 5.5,7 4,12 9,5 5.5,5" fill="rgba(251,191,36,0.25)" stroke="#F59E0B" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-            <div style="flex:1"><div class="doc-name">Elektrische Keuring</div><div class="doc-sub" style="color:var(--amber)">Controleer 1 veld</div></div>
-            <div class="doc-chevron">›</div>
-          </div>
-          <div class="doc-card" onclick="openDocSheet('bodem')">
-            <div class="doc-icon doc-icon-green"><svg width="11" height="11" viewBox="0 0 11 11"><circle cx="5.5" cy="5.5" r="4.5" fill="rgba(52,211,153,0.2)" stroke="#34D399" stroke-width="1.5"/></svg></div>
-            <div style="flex:1"><div class="doc-name">Bodemattest</div><div class="doc-sub" style="color:var(--green)">Hoge zekerheid</div></div>
-            <div class="doc-chevron">›</div>
-          </div>
-          <div class="doc-card" onclick="openDocSheet('akte')">
-            <div class="doc-icon doc-icon-amber"><svg width="10" height="12" viewBox="0 0 10 12" fill="none"><rect x="1" y="1" width="8" height="10" rx="1" fill="rgba(251,191,36,0.15)" stroke="#F59E0B" stroke-width="1.5"/><line x1="3" y1="4" x2="7" y2="4" stroke="#F59E0B" stroke-width="1"/><line x1="3" y1="6.5" x2="7" y2="6.5" stroke="#F59E0B" stroke-width="1"/></svg></div>
-            <div style="flex:1"><div class="doc-name">Eigendomsakte</div><div class="doc-sub" style="color:var(--amber)">Technisch geëxtraheerd</div></div>
-            <div class="doc-chevron">›</div>
-          </div>
-          <div class="doc-card" onclick="openDocSheet('ontboss')">
-            <div class="doc-icon doc-icon-red"><svg width="11" height="11" viewBox="0 0 11 11"><circle cx="5.5" cy="5.5" r="4.5" fill="rgba(248,113,113,0.15)" stroke="#F87171" stroke-width="1.5"/><line x1="3.5" y1="3.5" x2="7.5" y2="7.5" stroke="#F87171" stroke-width="1.5"/><line x1="7.5" y1="3.5" x2="3.5" y2="7.5" stroke="#F87171" stroke-width="1.5"/></svg></div>
-            <div style="flex:1"><div class="doc-name">Ontbossingsattest</div><div class="doc-sub" style="color:var(--red)">Ontbreekt — upload vereist</div></div>
-            <div class="doc-chevron">›</div>
+          <div class="ph-right">
+            <div class="ph-pct">92%</div>
+            <div class="ph-pct-label">Volledigheid</div>
           </div>
         </div>
+        <span class="badge badge-green" style="font-size:11px;padding:4px 12px">✓ Klaar voor Compromis</span>
       </div>
       <div class="dossier-sidebar">
-        <div class="sidebar-card">
+        <div class="sidebar-card" style="flex:1">
           <div class="sidebar-card-title">Partijen &amp; dossier</div>
           <div class="sidebar-row"><span class="sidebar-key">Verkoper</span><span class="sidebar-val">F. &amp; M. Janssen</span></div>
           <div class="sidebar-row"><span class="sidebar-key">Koper</span><span class="sidebar-val">R. Vermeersch</span></div>
@@ -928,11 +879,64 @@ body::after{
           <div class="sidebar-row"><span class="sidebar-key">Notaris</span><span class="sidebar-val">Notaris De Smedt, Gent</span></div>
           <div class="sidebar-row"><span class="sidebar-key">Referentie</span><span class="sidebar-val">DOS-2026-047</span></div>
         </div>
-        <button class="btn btn-success" onclick="openCompromisModal()" style="width:100%;padding:13px;font-size:13px;display:flex;align-items:center;justify-content:center;gap:8px">
+        <button class="btn btn-success" onclick="openCompromisModal()" style="width:100%;padding:13px;font-size:13px;display:flex;align-items:center;justify-content:center;gap:8px;margin-top:auto">
           <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
           Genereer Compromis
         </button>
         <div style="font-size:11px;color:var(--text-muted);text-align:center">5 van 6 attesten volledig</div>
+      </div>
+    </div>
+
+    <div class="pipeline">
+      <div class="pipe-step done" onclick="openDocSheet('bod')"><div class="pipe-icon done-c">✓</div><div class="pipe-label done-c">Bod</div></div>
+      <span class="pipe-arrow">→</span>
+      <div class="pipe-step done" onclick="openDocSheet('samenwerking')"><div class="pipe-icon done-c">✓</div><div class="pipe-label done-c">Samenwerking</div></div>
+      <span class="pipe-arrow">→</span>
+      <div class="pipe-step current" onclick="openDocSheet('compromis')"><div class="pipe-icon current-c">→</div><div class="pipe-label current-c">Compromis</div></div>
+    </div>
+
+    <div class="doc-card" onclick="openDocSheet('bod')">
+      <div class="doc-icon doc-icon-green"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" fill="rgba(52,211,153,0.15)" stroke="#34D399" stroke-width="1.5"/><polyline points="4,7 6,9 10,5" stroke="#34D399" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div style="flex:1"><div class="doc-name">Bod / Aankoopvoorstel</div><div class="doc-sub" style="color:var(--green)">Geaccepteerd · Brondata</div></div>
+      <div class="doc-chevron">›</div>
+    </div>
+    <div class="doc-card" onclick="openDocSheet('samenwerking')">
+      <div class="doc-icon doc-icon-green"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" fill="rgba(52,211,153,0.15)" stroke="#34D399" stroke-width="1.5"/><polyline points="4,7 6,9 10,5" stroke="#34D399" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div style="flex:1"><div class="doc-name">Samenwerkingsovereenkomst</div><div class="doc-sub" style="color:var(--green)">Ondertekend · 6 velden overgenomen uit dossier</div></div>
+      <div class="doc-chevron">›</div>
+    </div>
+    <div class="doc-card" onclick="openDocSheet('compromis')">
+      <div class="doc-icon doc-icon-blue"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4F8EFF" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+      <div style="flex:1"><div class="doc-name">Compromis</div><div class="doc-sub" style="color:#4F8EFF">Klaar om te genereren</div></div>
+      <div class="doc-chevron">›</div>
+    </div>
+
+    <div class="divider-label">Attesten &amp; Documenten</div>
+    <div class="attesten-grid">
+      <div class="doc-card" onclick="openDocSheet('epc')">
+        <div class="doc-icon doc-icon-green"><svg width="11" height="11" viewBox="0 0 11 11"><circle cx="5.5" cy="5.5" r="4.5" fill="rgba(52,211,153,0.2)" stroke="#34D399" stroke-width="1.5"/></svg></div>
+        <div style="flex:1"><div class="doc-name">EPC Certificaat</div><div class="doc-sub" style="color:var(--green)">Hoge zekerheid</div></div>
+        <div class="doc-chevron">›</div>
+      </div>
+      <div class="doc-card" onclick="openDocSheet('elek')">
+        <div class="doc-icon doc-icon-amber"><svg width="11" height="13" viewBox="0 0 11 13" fill="none"><polyline points="7,1 2,7 5.5,7 4,12 9,5 5.5,5" fill="rgba(251,191,36,0.25)" stroke="#F59E0B" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div style="flex:1"><div class="doc-name">Elektrische Keuring</div><div class="doc-sub" style="color:var(--amber)">Controleer 1 veld</div></div>
+        <div class="doc-chevron">›</div>
+      </div>
+      <div class="doc-card" onclick="openDocSheet('bodem')">
+        <div class="doc-icon doc-icon-green"><svg width="11" height="11" viewBox="0 0 11 11"><circle cx="5.5" cy="5.5" r="4.5" fill="rgba(52,211,153,0.2)" stroke="#34D399" stroke-width="1.5"/></svg></div>
+        <div style="flex:1"><div class="doc-name">Bodemattest</div><div class="doc-sub" style="color:var(--green)">Hoge zekerheid</div></div>
+        <div class="doc-chevron">›</div>
+      </div>
+      <div class="doc-card" onclick="openDocSheet('akte')">
+        <div class="doc-icon doc-icon-amber"><svg width="10" height="12" viewBox="0 0 10 12" fill="none"><rect x="1" y="1" width="8" height="10" rx="1" fill="rgba(251,191,36,0.15)" stroke="#F59E0B" stroke-width="1.5"/><line x1="3" y1="4" x2="7" y2="4" stroke="#F59E0B" stroke-width="1"/><line x1="3" y1="6.5" x2="7" y2="6.5" stroke="#F59E0B" stroke-width="1"/></svg></div>
+        <div style="flex:1"><div class="doc-name">Eigendomsakte</div><div class="doc-sub" style="color:var(--amber)">Technisch geëxtraheerd</div></div>
+        <div class="doc-chevron">›</div>
+      </div>
+      <div class="doc-card" onclick="openDocSheet('ontboss')">
+        <div class="doc-icon doc-icon-red"><svg width="11" height="11" viewBox="0 0 11 11"><circle cx="5.5" cy="5.5" r="4.5" fill="rgba(248,113,113,0.15)" stroke="#F87171" stroke-width="1.5"/><line x1="3.5" y1="3.5" x2="7.5" y2="7.5" stroke="#F87171" stroke-width="1.5"/><line x1="7.5" y1="3.5" x2="3.5" y2="7.5" stroke="#F87171" stroke-width="1.5"/></svg></div>
+        <div style="flex:1"><div class="doc-name">Ontbossingsattest</div><div class="doc-sub" style="color:var(--red)">Ontbreekt — upload vereist</div></div>
+        <div class="doc-chevron">›</div>
       </div>
     </div>
 
