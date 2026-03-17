@@ -603,6 +603,22 @@ body::before{
 .profile-row svg{flex-shrink:0;opacity:0.5}
 .profile-logout{width:100%;margin-top:8px;padding:12px;border-radius:10px;border:1px solid rgba(255,80,80,0.3);background:rgba(255,80,80,0.07);color:#ff6b6b;font-size:13px;font-weight:600;cursor:pointer;transition:var(--tr)}
 .profile-logout:hover{background:rgba(255,80,80,0.15)}
+
+/* ── Compromis generation animation ── */
+.gen-overlay{position:fixed;inset:0;z-index:500;background:rgba(0,0,0,0.75);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.3s}
+.gen-overlay.visible{opacity:1;pointer-events:all}
+.gen-modal{background:#161c2d;border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:28px 32px;width:360px;display:flex;flex-direction:column;gap:14px}
+.gen-modal-title{font-size:14px;font-weight:700;color:#fff;display:flex;align-items:center;gap:10px}
+.gen-modal-bar-wrap{height:3px;background:rgba(255,255,255,0.08);border-radius:2px;overflow:hidden}
+.gen-modal-bar{height:100%;width:0%;background:#4F8EFF;border-radius:2px;transition:width 0.6s ease}
+.gen-modal-step{display:flex;align-items:center;gap:12px;font-size:13px;color:rgba(255,255,255,0.35);transition:color 0.4s}
+.gen-modal-step.active{color:#fff}
+.gen-modal-step.done{color:#34D399}
+.gen-modal-step-dot{width:18px;height:18px;border-radius:50%;border:2px solid currentColor;display:flex;align-items:center;justify-content:center;font-size:10px;flex-shrink:0;transition:all 0.3s}
+.gen-modal-step.active .gen-modal-step-dot{border-color:#4F8EFF;background:rgba(79,142,255,0.15);animation:pulseDot 1s infinite}
+.gen-modal-step.done .gen-modal-step-dot{border-color:#34D399;background:rgba(52,211,153,0.15)}
+.gen-modal-result{font-size:12px;color:#34D399;font-weight:600;text-align:center;opacity:0;transition:opacity 0.4s;padding-top:4px}
+.gen-modal-result.visible{opacity:1}
 </style>
 </head>
 <body>
@@ -1927,7 +1943,21 @@ function closeCompromisModal() {
 }
 function generateCompromis() {
   closeCompromisModal();
-  showToast('📄 Compromis gegenereerd — Dorpsstraat_45_Gent_compromis_v1.docx');
+  const ov=document.getElementById('genOverlay');
+  const bar=document.getElementById('genBar');
+  const result=document.getElementById('genResult');
+  const steps=['gstep1','gstep2','gstep3'].map(id=>document.getElementById(id));
+  const dots=['gdot1','gdot2','gdot3'].map(id=>document.getElementById(id));
+  steps.forEach(s=>{s.classList.remove('active','done')});
+  dots.forEach(d=>{d.textContent=''});
+  bar.style.width='0%';bar.style.background='#4F8EFF';
+  result.classList.remove('visible');
+  ov.classList.add('visible');
+  setTimeout(()=>{steps[0].classList.add('active');bar.style.width='25%'},200);
+  setTimeout(()=>{steps[0].classList.remove('active');steps[0].classList.add('done');dots[0].textContent='✓';steps[1].classList.add('active');bar.style.width='58%'},1200);
+  setTimeout(()=>{steps[1].classList.remove('active');steps[1].classList.add('done');dots[1].textContent='✓';steps[2].classList.add('active');bar.style.width='82%'},2400);
+  setTimeout(()=>{steps[2].classList.remove('active');steps[2].classList.add('done');dots[2].textContent='✓';bar.style.width='100%';bar.style.background='#34D399';result.classList.add('visible')},3400);
+  setTimeout(()=>{ov.classList.remove('visible');showToast('📄 Compromis klaar — Dorpsstraat_45_Gent_compromis_v1.docx')},4800);
 }
 
 // ── Verify check toggle ──
@@ -2051,6 +2081,30 @@ function closeProfileSheet(){
       </div>
     </div>
     <button class="profile-logout" onclick="closeProfileSheet();showToast('Tot later, Olivier 👋')">Uitloggen</button>
+  </div>
+</div>
+
+<!-- Compromis generation overlay -->
+<div class="gen-overlay" id="genOverlay" onclick="this.classList.remove('visible')">
+  <div class="gen-modal" onclick="event.stopPropagation()">
+    <div class="gen-modal-title">
+      <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="#4F8EFF" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+      Compromis genereren…
+    </div>
+    <div class="gen-modal-bar-wrap"><div class="gen-modal-bar" id="genBar"></div></div>
+    <div class="gen-modal-step" id="gstep1">
+      <div class="gen-modal-step-dot" id="gdot1"></div>
+      <span>Velden samenstellen uit brondata</span>
+    </div>
+    <div class="gen-modal-step" id="gstep2">
+      <div class="gen-modal-step-dot" id="gdot2"></div>
+      <span>Juridische structuur toepassen</span>
+    </div>
+    <div class="gen-modal-step" id="gstep3">
+      <div class="gen-modal-step-dot" id="gdot3"></div>
+      <span>DOCX document opmaken</span>
+    </div>
+    <div class="gen-modal-result" id="genResult">✓ &nbsp;Dorpsstraat_45_Gent_compromis_v1.docx &nbsp;·&nbsp; klaar</div>
   </div>
 </div>
 </body>
